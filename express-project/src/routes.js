@@ -21,7 +21,7 @@ routes.post('/products/', (req, res)=>{
         category,
     }
     products.push(product)
-    return res.json(products)
+    return res.status(201).send();
 })
 
 routes.put('/products/:id', (req, res)=>{
@@ -45,7 +45,7 @@ routes.put('/products/:id', (req, res)=>{
     }
     products.push(product)
 
-    return res.status(204).send();
+    return res.status(200).send();
 })
 
 routes.delete('/products/:id', (req, res)=>{
@@ -57,5 +57,7 @@ routes.delete('/products/:id', (req, res)=>{
         return res.status(400).json({error:"Product does not found"})
     }
 
-    return res.json({message:'delete'})
+    products.splice(productIndex,1 );
+
+    return res.status(204).send();
 })
