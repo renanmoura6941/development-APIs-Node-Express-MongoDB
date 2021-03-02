@@ -1,5 +1,5 @@
-const {Router} = require('express');
-const {uuid} = require('uuidv4')
+import {Router} from 'express';
+import {uuid} from 'uuidv4';
 
 const routes = new Router();
 
@@ -61,3 +61,5 @@ routes.delete('/products/:id', (req, res)=>{
 
     return res.status(204).send();
 })
+
+export default routes;
