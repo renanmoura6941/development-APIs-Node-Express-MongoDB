@@ -3,8 +3,6 @@ import {uuid} from 'uuidv4';
 
 const routes = new Router();
 
-module.exports = routes;
-
 const products = []
 
 routes.get('/products',(req,res)=>{
