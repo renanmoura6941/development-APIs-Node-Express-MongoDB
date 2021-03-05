@@ -7,5 +7,6 @@ const routes = new Router();
 routes.post('/categories', CategoryController.store);
 routes.get('/categories', CategoryController.index);
 routes.put('/categories/:id', CategoryController.update);
+routes.delete('/categories/:id', CategoryController.delete);
 
 export default routes;
