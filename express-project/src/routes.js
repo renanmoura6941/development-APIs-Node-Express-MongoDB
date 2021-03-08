@@ -9,7 +9,11 @@ routes.get('/categories', CategoryController.index);
 routes.put('/categories/:id', CategoryController.update);
 routes.delete('/categories/:id', CategoryController.delete);
 
-routes.get('/products', ProductController.index)
+
 routes.post('/products', ProductController.store);
+routes.get('/products', ProductController.index);
+routes.put('/products/:id', ProductController.update);
+routes.delete('/products/:id', ProductController.delete);
+
 
 export default routes;
