@@ -13,11 +13,10 @@ class CategoryController {
     async store(req, res) {
 
         const { name } = req.body;
-
-        const categoryExists = await Category.findById(category);
+        const categoryExists = await Category.findOne({name});
 
         if (categoryExists) {
-            return res.status(400).json({ error: 'Category not found' });
+            return res.status(400).json({ error: 'Category alredy exist' });
         }
 
         const category = await Category.create({ name });

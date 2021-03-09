@@ -1,4 +1,5 @@
 import Product from "../models/Product";
+import Category from "../models/Category";
 
 class ProductController {
 
@@ -7,17 +8,18 @@ class ProductController {
 
         const data = { name, description, price, category };
 
-        const productExists = await Product.findOne(data);
+
         const categoryExists = await Category.findById(category);
 
         if (!categoryExists) {
             return res.status(400).json({ error: 'Category does not found' });
         }
-
+        const productExists = await Product.findOne(data);
 
         if (productExists) {
             return res.status(400).json({ error: 'Product already exists' });
         }
+
         const product = await Product.create({
             name, description, price, category
         });
@@ -37,7 +39,6 @@ class ProductController {
         const { name, description, price, category } = req.body;
 
         const product = await Product.findById(id);
-        console.log(product)
 
         if (!product) {
             return res.status(400).json({ error: 'product does exist' });
