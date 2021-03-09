@@ -28,11 +28,12 @@ class ProductController {
 
     async update(req, res) {
         const { id } = req.params;
-        const { name, description, price, category } = res.body;
+        const { name, description, price, category } = req.body;
 
         const product = await Product.findById(id);
+        console.log(product)
 
-        if (product) {
+        if (!product) {
             return res.status(400).json({ error: 'product does exist' });
         }
 
@@ -41,7 +42,7 @@ class ProductController {
         product.description = description;
         product.category = category;
 
-        Product.save(product);
+        product.save();
 
         return res.json(product);
 
@@ -52,7 +53,8 @@ class ProductController {
 
         const product = await Product.findById(id);
 
-        if (product) {
+
+        if (!product) {
             return res.status(400).json({ error: 'product does exist' });
         }
 
