@@ -14,10 +14,10 @@ class CategoryController {
 
         const { name } = req.body;
 
-        const categoryExists = await Category.findOne({ name });
+        const categoryExists = await Category.findById(category);
 
         if (categoryExists) {
-            return res.status(400).json({ error: 'product already exists' });
+            return res.status(400).json({ error: 'Category not found' });
         }
 
         const category = await Category.create({ name });
@@ -33,7 +33,7 @@ class CategoryController {
         const category = await Category.findById(id);
 
         if (!category) {
-            return res.status(400).json({ error: 'procu does not found' });
+            return res.status(400).json({ error: 'product does not found' });
         }
         if (name && (category !== category.name)) {
             const categoryExists = await Category.findOne({ name });

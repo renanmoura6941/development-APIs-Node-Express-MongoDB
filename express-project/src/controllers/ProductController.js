@@ -8,9 +8,15 @@ class ProductController {
         const data = { name, description, price, category };
 
         const productExists = await Product.findOne(data);
+        const categoryExists = await Category.findById(category);
+
+        if (!categoryExists) {
+            return res.status(400).json({ error: 'Category does not found' });
+        }
+
 
         if (productExists) {
-            return res.status(400).json({ error: 'category already exists' });
+            return res.status(400).json({ error: 'Product already exists' });
         }
         const product = await Product.create({
             name, description, price, category
@@ -22,7 +28,7 @@ class ProductController {
     }
 
     async index(req, res) {
-        const products = await Product.find();
+        const products = await Product.find().populate('product');
         return res.json(products);
     }
 
@@ -35,6 +41,14 @@ class ProductController {
 
         if (!product) {
             return res.status(400).json({ error: 'product does exist' });
+        }
+
+        if (name && (name !== product.name)) {
+            const productExists = await Product.findOne({ name });
+
+            if (productExists) {
+                return res.status(400).json({ error: 'Product already exists' });
+            }
         }
 
         product.name = name;
