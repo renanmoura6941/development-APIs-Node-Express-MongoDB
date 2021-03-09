@@ -5,8 +5,13 @@ class App {
         this.server = express();
     }
 
-
     middlewares() {
         this.server.user(express.json);
     }
+
+    routes() {
+
+    }
 }
+
+export default new App().server;
