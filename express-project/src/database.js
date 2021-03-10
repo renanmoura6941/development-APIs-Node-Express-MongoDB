@@ -1,17 +1,19 @@
-import database from 'mime-db';
 import mongoose from 'mongoose';
 
-class Database{
+class Database {
 
-    constructor(){
+    constructor() {
         this.init();
     }
 
-    init(){
-        mongoose.connect('mongodb://localhost:27017/userdb',
-            {useNewUrlParser:true, useUnifiedTopology:true}
+    init() {
+        mongoose.connect('mongodb://localhost/mydb',
+            { useNewUrlParser: true, useUnifiedTopology: true }
         );
-
+        mongoose.connection.on('erro', console.error.bind(console, 'connecction error'));
+        mongoose.connection.once('open', function () {
+            console.log('mongodb is connected');
+        });
     }
 
 }
