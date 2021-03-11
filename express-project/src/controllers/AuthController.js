@@ -12,7 +12,11 @@ class AuthController {
         const user = await User.findOne({ email });
 
         if (!user) {
-            return status(400).json({ error: 'Credentials do not match' })
+            return status(400).json({ error: 'Credentials do not match' });
+        }
+
+        if (user.deleted == true) {
+            return status(400).json({ error: 'Disable user' });
         }
 
         const checkPassword = await bcryptjs.compare(password, user.password);

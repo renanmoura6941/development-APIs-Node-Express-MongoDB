@@ -11,5 +11,8 @@ routes.post('/auth', AuthController.store);
 
 routes.use(checkCredentials)
 routes.get('/users', checkCredentials, UserController.show);
+routes.put('/users', checkCredentials, UserController.update);
+routes.delete('/users', checkCredentials, UserController.delete);
+
 
 export default routes;
