@@ -2,6 +2,9 @@ import { verify } from "jsonwebtoken";
 import { next } from "sucrase/dist/parser/tokenizer";
 
 export default async function (req, res, next) {
+
+    console.log("middleswwares");
+    
     const authHeader = req.headers.authorization;
     if (!authHeader) {
         return res.status(401).json({ error: 'token is missing' })

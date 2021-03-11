@@ -3,6 +3,7 @@ import User from '../models/User';
 class UserController {
 
     async show(req, res) {
+        console.log("show");
         const user = await User.findById(req.user);
 
         if (!user) {
