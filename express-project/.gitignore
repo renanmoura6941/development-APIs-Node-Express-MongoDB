@@ -1,1 +1,2 @@
-src\security\security.js
+node_modules/
+src/security/security.js
